@@ -47,23 +47,7 @@
       </li>
 
 
-  <?php
-	$conn = mysqli_connect("211.249.62.91", "ljsnc", "ljsnc1127!", "dycis_mobile","3306");
 
-      if ( $conn == false ) {
-        echo "<p>Failure - " . mysqli_connect_error() . "</p>";
-      } else {
-        echo "<p>db connection Success</p>";
-      }
-
-
-      $insert_query = "SELECT USER_ID, USER_NM FROM tn_user limit 10";
-      $jb_result = mysqli_query($conn, $insert_query);;
-
-      while( $jb_row = mysqli_fetch_array( $jb_result ) ) {
-        echo '<p>' . $jb_row[ 'USER_ID' ].'&nbsp;' . $jb_row[ 'USER_NM' ] .  '</p>';
-      }
-?>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
