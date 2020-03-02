@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php  include ('head.html')?>
-<?php  include ('../head.php')?>
+<?php  include ('./head.php')?>
 
 
 <body id="page-top">

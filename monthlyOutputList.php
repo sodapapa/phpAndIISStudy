@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php  include ('head.html')?>
-<?php  include ('../head.php')?>
+<?php  include ('./head.php')?>
 
 
 <body id="page-top">
@@ -342,40 +342,17 @@
 
 
   <script>
-const Grid = tui.Grid;
 
 
-const instance = new Grid({
-  el: document.getElementById('grid'), // Container element
-  columns: [
-    {
-      header: 'Name',
-      name: 'name'
-    },
-    {
-      header: 'Artist',
-      name: 'artist'
-    },
-    {
-      header: 'Release',
-      name: 'release'
-    },
-    {
-      header: 'Genre',
-      name: 'genre'
-    }
-  ],
-  data: [
-    {
-      name: 'Beautiful Lies',
-      artist: 'Birdy',
-      release: '2016.03.26',
-      genre: 'Pop'
-    }
-  ]
-});
-
-// instance.resetData(newData); // Call API of instance's public method
+// var data = [
+//   {
+//     name: 'Beautiful Lies',
+//     artist: 'Birdy',
+//     release: '2016.03.26',
+//     genre: 'Pop'
+//   }
+// ]
+// instance.resetData(data); // Call API of instance's public method
 
 // Grid.applyTheme('striped'); // Call API of static method
 
@@ -385,6 +362,41 @@ const instance = new Grid({
 
 <script type="text/javascript">
 $(function() {
+  const Grid = tui.Grid;
+
+
+  const instance = new Grid({
+    el: document.getElementById('grid'), // Container element
+    columns: [
+      {
+        header: 'USER_ID',
+        name: 'USER_ID'
+      },
+      {
+        header: 'USER_NM',
+        name: 'USER_NM'
+      },
+      {
+        header: 'Release',
+        name: 'release'
+      },
+      {
+        header: 'Genre',
+        name: 'genre'
+      }
+    ]
+    // ,
+    // data: [
+    //   {
+    //     name: 'Beautiful Lies',
+    //     artist: 'Birdy',
+    //     release: '2016.03.26',
+    //     genre: 'Pop'
+    //   }
+    // ]
+  });
+
+
      //push버튼을 클릭하면 변수들을 정의하고 ajax시작!
         // var ids = $(this).parent().attr("id");
         var sfl = "전송시킬내용1";
@@ -394,7 +406,10 @@ $(function() {
 
         var data = JSON.stringify({sfl:sfl, stx:stx});
       //  var sendData = {data: JSON.stringify({sfl:sfl,stx:stx})};
-        var sendData = data
+      // var data = JSON.stringify({name:$('#name').val(), email:$('#email').val()});
+      var sendData =  {"data" : data}
+
+//        var sendData = data
 
         console.log(sendData);
 
@@ -407,6 +422,7 @@ $(function() {
                 cache: false,
                 success: function(data){ //전송성공!
                     console.log(data); //콘솔창에 데이터 찍어보기(배열 데이터가 출력됨)
+                    instance.resetData(data);
                     var htmls = "";
                    //  data.forEach(function(element, indes, array) {
 //                         htmls += "<a href='"+element.urls+"'><article class='mo-index-tab-content-in'><span class='mo-index-tab-content-in-condition'>"+element.istatus+"</span>";
