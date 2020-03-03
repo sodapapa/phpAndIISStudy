@@ -1,5 +1,8 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+
 <?php  include ('head.html')?>
-<?php  include ('../head.php')?>
+<?php  include ('./head.php')?>
 
 <body class="bg-gradient-primary">
 
@@ -20,12 +23,12 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-	                  <form class="user" action="/loginResult.php" method="post">
+	                  <form class="user" method="post" action="/loginOk.php" >
                     <div class="form-group">
-                      <input type="input" class="form-control form-control-user" name="id" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="input" class="form-control form-control-user" name="userId" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="pw"id="exampleInputPassword" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" name="userPw"id="exampleInputPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -33,7 +36,7 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <input type="submit" value="Submit">
+                    <input type="submit" class="btn btn-primary btn-user btn-block">
 
                     <a href="index.html" class="btn btn-primary btn-user btn-block">
                       Login

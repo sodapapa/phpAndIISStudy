@@ -9,70 +9,75 @@
         </button>
       </div>
       <div class="modal-body">
-          <form class="user">
+          <form class="user" method="post" action="./setOutput.php">
             <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
+              <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                 <label for="expendDt" style="margin: 10px;">지출날짜</label>
               </div>
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <input type="date" class="form-control form-control-user" id="expendDt" placeholder="First Name">
               </div>
-            </div>
-            <div class="form-group row">
+            </div> -->
+
+
+            <!-- <div class="form-group row">
               <div class="col-sm-3 mb-3 mb-sm-0">
-                <label for="expendDt" style="margin: 10px;">지출날짜</label>
+                <label for="expendDt" style="margin: 10px;"></label>
               </div>
               <div class="col-sm-9 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                <input type="text" class="form-control form-control-user" id="" placeholder="First Name">
+              </div>
+            </div> -->
+
+            <div class="form-group row">
+              <div class="col-sm-3 mb-3 mb-sm-0">
+                <label for="expendDt" style="margin: 10px;">user_login_id</label>
+              </div>
+              <div class="col-sm-9 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="userLoginId" name="userLoginId" placeholder="First Name">
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <label for="expendDt" style="margin: 10px;">지출날짜</label>
+              <div class="col-sm-3 mb-3 mb-sm-0">
+                <label for="expendDt" style="margin: 10px;">phone_no</label>
               </div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <label for="expendDt" style="margin: 10px;">지출날짜</label>
-              </div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <label for="expendDt" style="margin: 10px;">지출날짜</label>
-              </div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <label for="expendDt" style="margin: 10px;">지출날짜</label>
-              </div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <label for="expendDt" style="margin: 10px;">지출날짜</label>
-              </div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+              <div class="col-sm-9 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="phoneNo" name="phoneNo" placeholder="First Name">
               </div>
             </div>
 
+            <div class="form-group row">
+              <div class="col-sm-3 mb-3 mb-sm-0">
+                <label for="expendDt" style="margin: 10px;">user_nm</label>
+              </div>
+              <div class="col-sm-9 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="userNm" name="userNm" placeholder="First Name">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-3 mb-3 mb-sm-0">
+                <label for="expendDt" style="margin: 10px;">user_email</label>
+              </div>
+              <div class="col-sm-9 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="userEmail" name="userEmail" placeholder="First Name">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-3 mb-3 mb-sm-0">
+                <label for="expendDt" style="margin: 10px;">user_birthday</label>
+              </div>
+              <div class="col-sm-9 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="userBirthday" name="userBirthday" placeholder="First Name">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-primary">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
           </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="login.html">Regist</a>
       </div>
     </div>
   </div>
