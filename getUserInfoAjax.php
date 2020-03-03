@@ -6,29 +6,29 @@ try {
   $data = json_decode($_POST['data']);
 
   //  $data->userLoginId;
-  $name = $data->{'year'};
-  $name = '%'.$name.'%';
-    $db = new DB();
+  $param = $data->{'year'};
+  $param = '%'.$param.'%';
+  $db = new DB();
 
-    // $age = 18;
+  // $age = 18;
 
-    $sql = 'SELECT
-          USER_ID as userId,
-          USER_NM as userNm,
-          PHONE_NO as phoneNo,
-          USER_EMAIL as userEmail
-          FROM tn_user where USER_LOGIN_ID LIKE :name limit 100';
-    $stmt =$db->prepare($sql);
-    $stmt->bindParam(':name',$name);
-    $stmt->execute();
-    // $result =$stmt->fetchAll(PDO::FETCH_ASSOC);
+  $sql = 'SELECT
+        USER_ID as userId,
+        USER_NM as userNm,
+        PHONE_NO as phoneNo,
+        USER_EMAIL as userEmail
+        FROM tn_user where USER_LOGIN_ID LIKE :param limit 100';
+  $stmt =$db->prepare($sql);
+  $stmt->bindParam(':param',$param);
+  $stmt->execute();
+  // $result =$stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $myArray = array();
+  $myArray = array();
 
-    while($row = $stmt->fetch()) {
-            $myArray[] = $row;
-    }
-    echo json_encode( $myArray);
+  while($row = $stmt->fetch()) {
+          $myArray[] = $row;
+  }
+  echo json_encode( $myArray);
 
     // echo 'Success';
 }catch(Exception$e) {
