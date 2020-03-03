@@ -2,26 +2,11 @@
 <html lang="en">
 
 <?php  include ('head.html')?>
-<?php  include ('./head.php')?>
-
-
 <body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-
-      <?php  include ('menu.html')?>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
+    <?php  include ('menu.html')?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -31,210 +16,68 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <?php include ('navigation.html')?>
+        <!-- End of Topbar -->
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <form name="searchForm" id="searchForm" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <select name="year" id="yearpicker" class="form-control bg-light border-2 small">
+
+
+                <option value="11" selected="selected">11</option>
+                <option value="test">test</option>
+                <option value="key">key</option>
+
+                <?php
+                  require 'createConn.php';
+                  $cdGrp = 'ITEM_MENU_TYPE';
+                  $db = new DB();
+                  $sql = 'SELECT * FROM tm_cd WHERE CD_GRP = :cdGrp and FG_LANG="ko"';
+                  $stmt =$db->prepare($sql);
+                  $stmt->bindParam(':cdGrp' ,$cdGrp);
+                  $stmt->execute();
+                  // $result =$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                  $myArray = array();
+
+                  while($row = $stmt->fetch()) {
+
+                          echo '<option value="'.$row['CD_NO'].'">'.$row['CD_NO'].'</option>';
+                  }
+                  // echo json_encode( $myArray);
+
+                ?>
+              </select>
+              <select name="month" id="monthPicker" class="form-control bg-light border-2 small">
+                <option value="바나나">바나나</option>
+                <option value="사과">사과</option>
+                <option value="파인애플" selected="selected">파인애플</option>
+              </select>
+
+              <input type="select" class="form-control bg-light border-2 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-primary" type="button" id="searchBtn" onclick="javascript:getMonthlyDataList();">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
             </div>
           </form>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-
-          </ul>
-
-        </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#inpuFormModal">
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#outputFormModal">
               <i class="fas fa-download fa-sm text-white-50"></i> 지출입력</a>
           </div>
-
           <!-- Content Row -->
-<div id="grid"></div>
+            <div id="grid"></div>
           <!-- Content Row -->
-
-
-
         </div>
         <!-- /.container-fluid -->
-
       </div>
       <!-- End of Main Content -->
-
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -256,215 +99,11 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="inpuFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">지출입력</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form class="user">
-              <div class="form-group row">
-                <lable>test</leble>
-
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-                </div>
-
-              </div>
-
-              <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                </div>
-                <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
-                </div>
-              </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Regist</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php  include ('outputForm.html')?>
+  <?php  include ('logoutModal.html')?>
+  <script type="text/javascript" src="js/custom/monthlyOutput.js"></script>
 
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  </body>
 
-
-  <script>
-
-
-// var data = [
-//   {
-//     name: 'Beautiful Lies',
-//     artist: 'Birdy',
-//     release: '2016.03.26',
-//     genre: 'Pop'
-//   }
-// ]
-// instance.resetData(data); // Call API of instance's public method
-
-// Grid.applyTheme('striped'); // Call API of static method
-
-</script>
-
-
-
-<script type="text/javascript">
-$(function() {
-  const Grid = tui.Grid;
-
-
-  const instance = new Grid({
-    el: document.getElementById('grid'), // Container element
-    columns: [
-      {
-        header: 'USER_ID',
-        name: 'USER_ID'
-      },
-      {
-        header: 'USER_NM',
-        name: 'USER_NM'
-      },
-      {
-        header: 'Release',
-        name: 'release'
-      },
-      {
-        header: 'Genre',
-        name: 'genre'
-      }
-    ]
-    // ,
-    // data: [
-    //   {
-    //     name: 'Beautiful Lies',
-    //     artist: 'Birdy',
-    //     release: '2016.03.26',
-    //     genre: 'Pop'
-    //   }
-    // ]
-  });
-
-
-     //push버튼을 클릭하면 변수들을 정의하고 ajax시작!
-        // var ids = $(this).parent().attr("id");
-        var sfl = "전송시킬내용1";
-        var stx = "전송시킬내용2";
-        var tot = "전송시킬내용3";
-
-
-        var data = JSON.stringify({sfl:sfl, stx:stx});
-      //  var sendData = {data: JSON.stringify({sfl:sfl,stx:stx})};
-      // var data = JSON.stringify({name:$('#name').val(), email:$('#email').val()});
-      var sendData =  {"data" : data}
-
-//        var sendData = data
-
-        console.log(sendData);
-
-        //alert(ID);
-            $.ajax({ //ajax start!
-                type: "POST", //전송방식 POST와 GET 중에 하나
-                url: "./ajaxTest.php", //ajax를 실행할 파일 경로
-                data: sendData, //전송방식이 POST일 경우에 전송할 데이터들을 나열해준다
-                dataType: "json",
-                cache: false,
-                success: function(data){ //전송성공!
-                    console.log(data); //콘솔창에 데이터 찍어보기(배열 데이터가 출력됨)
-                    instance.resetData(data);
-                    var htmls = "";
-                   //  data.forEach(function(element, indes, array) {
-//                         htmls += "<a href='"+element.urls+"'><article class='mo-index-tab-content-in'><span class='mo-index-tab-content-in-condition'>"+element.istatus+"</span>";
-//                         htmls += "<div class='mo-index-tab-content-in-star'>";
-//                         htmls += star+"</div>";
-//                         htmls += "<p class='mo-index-tab-content-in-gu'>"+element.addr+"</p><p class='mo-index-tab-content-in-name'>"+element.ca_name+"</p>";
-//                         htmls += "<p class='mo-index-tab-content-in-description'>"+element.wr_subject+"</p><span class='mo-index-tab-review'>리뷰 : <b>"+element.comment+"</b></span>";
-//                         htmls += "<img src='"+element.img+"' alt='추천아파트' /></article></a>";
-                    // });
-//                     $(".morebox").before(htmls);
-//                     if(tot > nextID) {
-//                         $(".morebox").attr("id","more"+nextID); //다음 limit 걸어줄 숫자 버튼id로 수정해주기
-//                     }else{
-//                         $(".morebox").remove();
-//                     }
-                },
-                error : function( jqxhr , status , error ){
-                    console.log( jqxhr , status , error );
-                }
-            });
-   
-});
-
-  </script>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-
-</body>
-
-</html>
+  </html>
