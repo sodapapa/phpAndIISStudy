@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php session_start();
+<?php 
 
-  $user_id = 'test';
+  $user_id = '''';
 echo $user_id;
 
 include ('head.html')?>
