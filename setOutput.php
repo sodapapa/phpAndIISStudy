@@ -42,7 +42,7 @@ VALUES (
   $stmt->bindParam(':userBirthday',$userBirthday);
 
   $result = $stmt->execute();
-
+ws
   // $stmt->fetch();
   // echo $result;
   // echo "<script> alert('Stored successfully'); </script>";

@@ -5,7 +5,24 @@
     <i class="fa fa-bars"></i>
   </button>
 
+  <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+      <?php
+        $basename=basename($_SERVER["PHP_SELF"]);
 
+        //문자열 자르기 : 배열로 저장된다.
+        $strTok =explode('.' , $basename);
+        //배열 크기 가져오기
+        $cnt = count($strTok);
+        for($i = 0 ; $i < $cnt ; $i++){
+        	// echo($strTok[$i] . "<br/>");
+        }
+        // ehco '<h1> php test </h1>'
+        echo "<h3>$strTok[0]</h3>";
+        // echo "<br>",$_SERVER['SERVER_SOFTWARE'];
+      ?>
+    </div>
+  </div>
 
   <!-- Topbar Navbar -->
   <ul class="navbar-nav ml-auto">
@@ -21,6 +38,7 @@
           <div class="input-group">
             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
+
               <button class="btn btn-primary" type="button">
                 <i class="fas fa-search fa-sm"></i>
               </button>
@@ -140,7 +158,24 @@
     <!-- Nav Item - User Information -->
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small">test</span>
+
+        <?php
+
+        if(isset($_SESSION['userId']) || isset($_SESSION['userName'])) {
+        	// echo "<meta http-equiv='refresh' content='0;url=login.php'>";
+          // echo $_SESSION['userId'];
+          $user_id = $_SESSION['user_id'];
+          echo $user_id;
+          // $user_name = $_SESSION['userName'];
+          echo "<span class='mr-2 d-none d-lg-inline text-gray-600 small'>$user_id</span>";
+
+        	// exit;
+        }
+
+
+        ?>
+
+
         <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
       </a>
       <!-- Dropdown - User Information -->

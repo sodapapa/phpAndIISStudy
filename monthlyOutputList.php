@@ -16,22 +16,19 @@
       <div id="content">
 
         <!-- Topbar -->
-        <?php include ('navigation.html')?>
+        <?php include ('topbar.php')?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+          <h1 class="h3 mb-0 text-gray-800"></h1>
           <!-- Topbar Search -->
-          <form name="searchForm" id="searchForm" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <form name="searchForm" id="searchForm" class="col-xl-6">
             <div class="input-group">
               <select name="year" id="yearpicker" class="form-control bg-light border-2 small">
-
-
                 <option value="11" selected="selected">11</option>
                 <option value="test">test</option>
                 <option value="key">key</option>
-
                 <?php
                   require 'createConn.php';
                   $cdGrp = 'ITEM_MENU_TYPE';
@@ -45,11 +42,9 @@
                   $myArray = array();
 
                   while($row = $stmt->fetch()) {
-
                           echo '<option value="'.$row['CD_NO'].'">'.$row['CD_NO'].'</option>';
                   }
                   // echo json_encode( $myArray);
-
                 ?>
               </select>
               <select name="month" id="monthPicker" class="form-control bg-light border-2 small">
@@ -66,11 +61,13 @@
               </div>
             </div>
           </form>
-          <!-- Page Heading -->
+
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"></h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#outputFormModal">
-              <i class="fas fa-download fa-sm text-white-50"></i> 지출입력</a>
+              <i class="fas fa-download fa-sm text-white-50"></i> insert</a>
           </div>
+          <!-- Page Heading -->
           <!-- Content Row -->
             <div id="grid"></div>
           <!-- Content Row -->
