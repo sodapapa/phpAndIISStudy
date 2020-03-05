@@ -97,7 +97,6 @@
   </a>
 
   <?php  include ('outputForm.html')?>
-  <?php  include ('logoutModal.html')?>
   <script type="text/javascript" src="js/custom/monthlyOutput.js"></script>
 
 

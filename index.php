@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
-
-  $user_id = '''';
-echo $user_id;
+<?php
+// session_start();
+//   $user_id = '';
+// echo $user_id;
 
 include ('head.html')?>
 
@@ -21,8 +21,8 @@ include ('head.html')?>
       <div id="content">
 
         <!-- Topbar -->
-        <!-- End of Topbar -->
         <?php include ('topbar.php')?>
+        <!-- End of Topbar -->
         <!-- Begin Page Content -->
         <div class="container-fluid">
 

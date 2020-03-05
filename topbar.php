@@ -161,17 +161,17 @@
 
         <?php
 
-        if(isset($_SESSION['userId']) || isset($_SESSION['userName'])) {
-        	// echo "<meta http-equiv='refresh' content='0;url=login.php'>";
+        if(!isset($_COOKIE['user_id']) ) {
+        	 echo "<meta http-equiv='refresh' content='0;url=login.php'>";
           // echo $_SESSION['userId'];
-          $user_id = $_SESSION['user_id'];
-          echo $user_id;
+          // echo $user_id;
           // $user_name = $_SESSION['userName'];
-          echo "<span class='mr-2 d-none d-lg-inline text-gray-600 small'>$user_id</span>";
 
-        	// exit;
+        	exit;
         }
 
+        $user_id = $_COOKIE['user_id'];
+        echo "<span class='mr-2 d-none d-lg-inline text-gray-600 small'>$user_id</span>";
 
         ?>
 
@@ -201,5 +201,5 @@
     </li>
 
   </ul>
-
 </nav>
+<?php  include ('logoutModal.html')?>
